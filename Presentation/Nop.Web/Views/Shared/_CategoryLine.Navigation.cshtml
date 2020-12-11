@@ -1,0 +1,127 @@
+﻿@model CategoryNavigationModel.CategoryLineModel
+
+@functions{
+    public bool BreadCrumbContainsCurrentCategoryId(CategorySimpleModel category)
+    {
+        if (Model.CurrentCategoryId == 0)
+            return false;
+
+        if (category.Id == Model.CurrentCategoryId)
+            return true;
+
+        foreach (var subCategory in category.SubCategories)
+        {
+            if (BreadCrumbContainsCurrentCategoryId(subCategory))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+        
+<li class="has-sublist">
+
+    <a class="with-subcategories" href="@Url.RouteUrl("Category", new { SeName = Model.Category.SeName })"><span>@Model.Category.Name</span></a>
+    @{
+        //if (Model.Category.Id == Model.CurrentCategoryId ||
+        //    Model.Category.SubCategories.Count(BreadCrumbContainsCurrentCategoryId) > 0)
+        //{
+        if (Model.Category.SubCategories.Count > 0)
+        {
+
+            <div class="sublist-wrap categories with-pictures fullWidth boxes-3">
+                <div class="sublist">
+                    <div class="inner-wrap">
+                        <div class="row">
+                            @foreach (var subCategory in Model.Category.SubCategories)
+                            {
+                                var categoryLineModel = new CategoryNavigationModel.CategoryLineModel
+                                {
+                                    CurrentCategoryId = Model.CurrentCategoryId,
+                                    Category = subCategory
+                                };
+                                <div class="box">
+                                    <div class="picture-title-wrap">
+                                        <div class="title"><a href="@Url.RouteUrl("Category", new { SeName = categoryLineModel.Category.SeName })" title="Clothes"><span>@categoryLineModel.Category.Name</span></a></div>
+                                        <div class="picture">
+                                            <a href="@Url.RouteUrl("Category", new { SeName = categoryLineModel.Category.SeName })" title="Show products in category Clothes"> <img class="lazy" alt="Picture for category Clothes" src="https://pavilion.nop-templates.com/images/thumbs/0000903_clothes_290.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000903_clothes_290.jpeg"> </a>
+                                        </div>
+                                    </div>
+                                    <ul class="subcategories">
+                                        <li><a href="/dresses" title="Dresses"><span>Dresses</span></a></li>
+                                        <li><a href="/shirts" title="Shirts"><span>Shirts</span></a></li>
+                                        <li><a href="/skirts-shorts" title="Skirts &amp; Shorts"><span>Skirts &amp; Shorts</span></a></li>
+                                    </ul>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="slider-wrapper">
+                        <div class="anywhere-slider anywhere-slick-slider slickless" id="anywhereSlider2" data-mobilebreakpoint="768">
+                            <div class="picture-slide first-slide"><a href="@Url.RouteUrl("Category", new { SeName = Model.Category.SeName })"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000939.jpeg" data-mobilepicturesrc="" data-desktoppicturesrc="https://pavilion.nop-templates.com/images/thumbs/0000939.jpeg"> </a></div>
+                            <div class="slick-arrows"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            //}
+        }
+     }
+</li>
+           
+@*<div id="jcarousel-5-380" class="jCarouselMainWrapper">
+    <div class="nop-jcarousel product-grid">
+        <h2 class="carousel-title has-navigation" style="display: block;"><button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" style="">Previous</button><span>Featured</span><button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" style="">Next</button></h2>
+        <div class="slick-carousel item-grid slick-initialized slick-slider" data-slick="{&quot;rtl&quot;:false,&quot;infinite&quot;:true,&quot;slidesToScroll&quot;:1,&quot;dots&quot;:false,&quot;speed&quot;:300,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:0,&quot;arrows&quot;:true,&quot;appendArrows&quot;:&quot;#jcarousel-5-380 .carousel-title&quot;,&quot;cssEase&quot;:&quot;linear&quot;,&quot;respondTo&quot;:&quot;slider&quot;,&quot;edgeFriction&quot;:0.05,&quot;initialSlide&quot;:0,&quot;pauseOnHover&quot;:true,&quot;draggable&quot;:false,&quot;prevArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-prev\&quot; aria-label=\&quot;Previous\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Previous</button>&quot;,&quot;nextArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-next\&quot; aria-label=\&quot;Next\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Next</button>&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:10000,&quot;settings&quot;:{&quot;slidesToShow&quot;:4}},{&quot;breakpoint&quot;:890,&quot;settings&quot;:{&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:711,&quot;settings&quot;:{&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:425,&quot;settings&quot;:{&quot;slidesToShow&quot;:1}}],&quot;lazyLoad&quot;:&quot;ondemand&quot;}" data-numberofvisibleitems="4">
+            <div aria-live="polite" class="slick-list">
+                <div class="slick-track" role="listbox" style="opacity: 1; width: 3708px; transform: translate3d(-309px, 0px, 0px);">
+                    <div class="carousel-item slick-slide slick-cloned" style="width: 309px;" data-slick-index="-1" aria-hidden="true" tabindex="-1">
+                        <div class="item-box">
+                            <div class="product-item sevenspikes-ajaxcart" data-productid="65">
+                                <div class="ribbon-wrapper">
+                                    <div class="picture"><a href="/galaxy-s6" title="Show details for Galaxy S6" tabindex="-1"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Picture of Galaxy S6" title="Show details for Galaxy S6" data-lazy="https://pavilion.nop-templates.com/images/thumbs/0000384_galaxy-s6_420.jpeg"> </a></div><a href="/galaxy-s6" class="ribbon-position top-right" data-productribbonid="1" data-productid="65">
+                                        <div class="product-ribbon new" style="background: #f6f6f6;padding: 5px 15px;top: 15px;">
+                                            <label class="ribbon-text" style="font-size: 13px;font-weight: bold;color: #f74258;">NEW</label>
+                                        </div>
+                                    </a>
+                                </div><div class="details">
+                                    <div class="product-rating-box" title="2 review(s)"><div class="rating"><div style="width:100%"></div></div></div><div class="attribute-squares-wrapper"></div><h2 class="product-title"><a href="/galaxy-s6" tabindex="-1">Galaxy S6</a></h2><div class="add-info">
+                                        <div class="prices"><span class="price actual-price">$861.00</span></div><div class="description">Lorem ipsum suspendisse et ante vitae curabitur nisl curabitur ultrices et torquent magna, etiam justo morbi dui feugiat tortor nisi lorem sodales turpis augue, metus per diam faucibus nullam commodo quis tellus convallis mauris eget risus nostra euismod tempor.</div><div class="buttons-upper"><div class="quick-view-button"><a title="Quick View">Quick View</a></div><input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="return AjaxCart.addproducttocomparelist(&quot;/compareproducts/add/65&quot;),!1" tabindex="-1"> <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="return AjaxCart.addproducttocart_catalog(&quot;/addproducttocart/catalog/65/2/1&quot;),!1" tabindex="-1"></div><div class="buttons-lower">
+                                            <div class="ajax-cart-button-wrapper" data-productid="65" data-isproductpage="false">
+                                                <input data-quantityproductid="65" type="text" class="productQuantityTextBox" value="1">
+                                                <button type="button" class="button-2 product-box-add-to-cart-button nopAjaxCartProductListAddToCartButton" data-productid="65"><span>Add to cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item slick-slide slick-current slick-active" style="width: 309px;" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
+                        <div class="item-box">
+                            <div class="product-item sevenspikes-ajaxcart" data-productid="241">
+                                <div class="picture"><a href="/arai-motocross-helmet" title="Show details for Arai Motocross Helmet" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000880_arai-motocross-helmet_420.jpeg" alt="Picture of Arai Motocross Helmet" title="Show details for Arai Motocross Helmet" style="opacity: 1;"> </a></div><div class="details">
+                                    <div class="product-rating-box" title="1 review(s)"><div class="rating"><div style="width:80%"></div></div></div><div class="attribute-squares-wrapper"></div><h2 class="product-title"><a href="/arai-motocross-helmet" tabindex="0">Arai Motocross Helmet</a></h2><div class="add-info">
+                                        <div class="prices"><span class="price actual-price">$699.00</span></div><div class="description">Lorem ipsum suspendisse et ante vitae curabitur nisl curabitur ultrices et torquent magna, etiam justo morbi dui feugiat tortor nisi lorem sodales turpis augue, metus per diam faucibus nullam commodo quis tellus convallis mauris eget risus nostra euismod tempor.</div><div class="buttons-upper"><div class="quick-view-button"><a title="Quick View">Quick View</a></div><input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="return AjaxCart.addproducttocomparelist(&quot;/compareproducts/add/241&quot;),!1" tabindex="0"> <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="return AjaxCart.addproducttocart_catalog(&quot;/addproducttocart/catalog/241/2/1&quot;),!1" tabindex="0"></div><div class="buttons-lower">
+                                            <div class="ajax-cart-button-wrapper" data-productid="241" data-isproductpage="false">
+                                                <input data-quantityproductid="241" type="text" class="productQuantityTextBox" value="1">
+                                                <button type="button" class="button-2 product-box-add-to-cart-button nopAjaxCartProductListAddToCartButton" data-productid="241"><span>Add to cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+

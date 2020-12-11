@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_Root";
+    Html.AppendScriptParts(ResourceLocation.Footer, $"https://pavilion.nop-templates.com/bundles/c2gyam1wwremdqm1bgq_mkanic8gw5p5p60ahs2ig98.min.js");
+    Html.AddCssFileParts("https://pavilion.nop-templates.com/bundles/dmvhl5ihenmw4lwlitohykf7bpm7ipouqrk578ylw8i.min.css");
+}
+
+@*<link href="https://pavilion.nop-templates.com/bundles/dmvhl5ihenmw4lwlitohykf7bpm7ipouqrk578ylw8i.min.css" rel="stylesheet" />*@
+@if (IsSectionDefined("Breadcrumb"))
+{
+    @section Breadcrumb {
+        @RenderSection("Breadcrumb")
+    }
+}
+<div class="two-columns-area slider-right-column">
+    <div class="center">
+        @RenderBody()
+    </div>
+</div>

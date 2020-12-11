@@ -1,0 +1,51 @@
+﻿@model ProductDetailsModel
+@{
+//Html.AddScriptParts(ResourceLocation.Footer, "~/lib/magnific-popup/jquery.magnific-popup.min.js");
+//Html.AddCssFileParts("~/lib/magnific-popup/magnific-popup.css");
+}
+
+<div class="gallery sevenspikes-cloudzoom-gallery">
+    <div class="picture-wrapper">
+        <div class="ribbon-wrapper">
+
+            <div class="picture" id="sevenspikes-cloud-zoom" data-zoomwindowelementid="" data-selectoroftheparentelementofthecloudzoomwindow="" data-defaultimagecontainerselector=".product-essential .gallery" data-zoom-window-width="244" data-zoom-window-height="257">
+                <a data-full-image-url="@Model.DefaultPictureModel.FullSizeImageUrl" class="picture-link" id="zoom1">
+                    <img src="@Model.DefaultPictureModel.ImageUrl" alt="@Model.DefaultPictureModel.AlternateText" class="cloudzoom" id="cloudZoomImage" itemprop="image" data-cloudzoom="appendSelector: '.picture-wrapper', zoomPosition: 'inside', zoomOffsetX: 0, captionPosition: 'bottom', tintOpacity: 0, zoomWidth: 244, zoomHeight: 257, easing: 3, touchStartDelay: true, zoomFlyOut: false, disableZoom: 'auto'" style="user-select: none;">
+                </a>
+
+            </div>
+
+            <div class="ribbon-position top-right" data-productribbonid="1" data-productid="11" style="">
+                <div class="product-ribbon new" style="background: #f6f6f6;padding: 5px 15px;top: 15px;">
+                    <label class="ribbon-text" style="font-size: 13px;font-weight: bold;color: #f74258;">NEW</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @if (Model.PictureModels.Count > 1 && Model.DefaultPictureZoomEnabled)
+        {
+            <div class="picture-thumbs in-carousel">
+                <div class="picture-thumbs-list slick-initialized slick-slider" id="picture-thumbs-carousel">
+                    <div aria-live="polite" class="slick-list">
+                        <div class="slick-track" role="listbox" style="opacity: 1; width: 255px; transform: translate3d(0px, 0px, 0px);">
+
+                            <div class="picture-thumbs-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 85px;">
+                                @foreach (var picture in Model.PictureModels)
+                                {
+                                    <a class="cloudzoom-gallery thumb-item"
+                                        data-full-image-url="@picture.FullSizeImageUrl" data-cloudzoom="appendSelector: '.picture-wrapper', zoomPosition: 'inside', zoomOffsetX: 0, captionPosition: 'bottom', tintOpacity: 0, zoomWidth: 244, zoomHeight: 257, useZoom: '.cloudzoom', 
+                                       image: '@picture.ImageUrl', 
+                                       zoomImage: '@picture.FullSizeImageUrl', easing: 3, touchStartDelay: true, zoomFlyOut: false, disableZoom: 'auto'" tabindex="0">
+                                        <img class="cloud-zoom-gallery-img"
+                                                src="@picture.ThumbImageUrl" alt="@picture.AlternateText">
+                                    </a>
+                                }
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

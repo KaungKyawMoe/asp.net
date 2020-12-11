@@ -1,0 +1,275 @@
+﻿@{
+    Layout = "_Root.Head";
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@await Html.PartialAsync("_Notifications")
+@await Html.PartialAsync("_JavaScriptDisabledWarning")
+@await Html.PartialAsync("_OldInternetExplorerWarning")
+<div class="master-wrapper-page">
+    @await Component.InvokeAsync("AdminHeaderLinks")
+    @await Html.PartialAsync("_Header")
+    <script asp-location="Footer">
+        var localized_data = {
+            AjaxCartFailure: "@T("AjaxCart.Failure")"
+        };
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
+    </script>
+
+
+
+    @*KKM*@
+    @*<div class="header-menu">
+              @await Component.InvokeAsync("TopMenu")
+        </div>*@
+
+    <div class="master-wrapper-content">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+
+        @if (IsSectionDefined("Breadcrumb"))
+        {
+            @RenderSection("Breadcrumb")
+        }
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
+
+    </div>
+    <style>
+        .manufacturer-grid {
+            margin: 0 !important;
+            border-top: 1px solid #e9e9e9 !important;
+            background-color: #fff !important;
+            padding: 20px 0 !important;
+        }
+        .manufacturer-grid>.slick-carousel {
+            width: 1200px;
+            padding-left: 100px;
+        }
+        .manufacturer-item{
+            border: 0px solid;
+        }
+
+    </style>
+    <div id="jcarousel-2-96" class="jCarouselMainWrapper">
+        <div class="nop-jcarousel manufacturer-grid">
+              <div class="slick-carousel item-grid slick-initialized slick-slider" data-slick="{&quot;rtl&quot;:false,&quot;infinite&quot;:true,&quot;slidesToScroll&quot;:1,&quot;dots&quot;:false,&quot;speed&quot;:300,&quot;autoplay&quot;:true,&quot;autoplaySpeed&quot;:3000,&quot;arrows&quot;:true,&quot;appendArrows&quot;:&quot;#jcarousel-2-96 .carousel-title&quot;,&quot;cssEase&quot;:&quot;linear&quot;,&quot;respondTo&quot;:&quot;slider&quot;,&quot;edgeFriction&quot;:0.05,&quot;initialSlide&quot;:0,&quot;pauseOnHover&quot;:true,&quot;draggable&quot;:false,&quot;prevArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-prev\&quot; aria-label=\&quot;Previous\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Previous</button>&quot;,&quot;nextArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-next\&quot; aria-label=\&quot;Next\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Next</button>&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:10000,&quot;settings&quot;:{&quot;slidesToShow&quot;:7}},{&quot;breakpoint&quot;:890,&quot;settings&quot;:{&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:711,&quot;settings&quot;:{&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:425,&quot;settings&quot;:{&quot;slidesToShow&quot;:1}}],&quot;lazyLoad&quot;:&quot;ondemand&quot;}" data-numberofvisibleitems="7">
+                <div aria-live="polite" class="slick-list">
+                    <div class="slick-track" role="listbox" style="opacity: 1; width: 4472px; transform: translate3d(-2924px, 0px, 0px);">
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-7" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> Philips </a></h2>
+                                    <div class="picture"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000971_philips_300.jpeg" alt="Picture for manufacturer Philips" title="Show products manufactured by Philips" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-6" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> Maybeline </a></h2>
+                                    <div class="picture"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000972_maybeline_300.jpeg" alt="Picture for manufacturer Maybeline" title="Show products manufactured by Maybeline" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-5" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/asus" title="Show products manufactured by Asus" tabindex="-1"> Asus </a></h2>
+                                    <div class="picture"><a href="/asus" title="Show products manufactured by Asus" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000973_asus_300.jpeg" alt="Picture for manufacturer Asus" title="Show products manufactured by Asus" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-4" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/globe" title="Show products manufactured by Globe" tabindex="-1"> Globe </a></h2>
+                                    <div class="picture"><a href="/globe" title="Show products manufactured by Globe" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000980_globe_300.jpeg" alt="Picture for manufacturer Globe" title="Show products manufactured by Globe" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-3" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/arai" title="Show products manufactured by Arai" tabindex="-1"> Arai </a></h2>
+                                    <div class="picture"><a href="/arai" title="Show products manufactured by Arai" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000975_arai_300.jpeg" alt="Picture for manufacturer Arai" title="Show products manufactured by Arai" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-2" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/giro" title="Show products manufactured by Giro" tabindex="-1"> Giro </a></h2>
+                                    <div class="picture"><a href="/giro" title="Show products manufactured by Giro" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000976_giro_300.jpeg" alt="Picture for manufacturer Giro" title="Show products manufactured by Giro" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="-1" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/thule" title="Show products manufactured by Thule" tabindex="-1"> Thule </a></h2>
+                                    <div class="picture"><a href="/thule" title="Show products manufactured by Thule" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000977_thule_300.jpeg" alt="Picture for manufacturer Thule" title="Show products manufactured by Thule" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="0" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide20">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/samsung" title="Show products manufactured by Samsung" tabindex="-1"> Samsung </a></h2>
+                                    <div class="picture"><a href="/samsung" title="Show products manufactured by Samsung" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000967_samsung_300.jpeg" alt="Picture for manufacturer Samsung" title="Show products manufactured by Samsung" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="1" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide21">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/apple" title="Show products manufactured by Apple" tabindex="-1"> Apple </a></h2>
+                                    <div class="picture"><a href="/apple" title="Show products manufactured by Apple" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000979_apple_300.jpeg" alt="Picture for manufacturer Apple" title="Show products manufactured by Apple" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide22">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/nikon" title="Show products manufactured by Nikon" tabindex="-1"> Nikon </a></h2>
+                                    <div class="picture"><a href="/nikon" title="Show products manufactured by Nikon" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000978_nikon_300.jpeg" alt="Picture for manufacturer Nikon" title="Show products manufactured by Nikon" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide23">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/delonghi" title="Show products manufactured by Delonghi" tabindex="-1"> Delonghi </a></h2>
+                                    <div class="picture"><a href="/delonghi" title="Show products manufactured by Delonghi" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000969_delonghi_300.jpeg" alt="Picture for manufacturer Delonghi" title="Show products manufactured by Delonghi" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="4" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide24">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/santa-cruz" title="Show products manufactured by Santa Cruz" tabindex="-1"> Santa Cruz </a></h2>
+                                    <div class="picture"><a href="/santa-cruz" title="Show products manufactured by Santa Cruz" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000970_santa-cruz_300.jpeg" alt="Picture for manufacturer Santa Cruz" title="Show products manufactured by Santa Cruz" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="5" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide25">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> Philips </a></h2>
+                                    <div class="picture"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000971_philips_300.jpeg" alt="Picture for manufacturer Philips" title="Show products manufactured by Philips" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="6" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide26">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> Maybeline </a></h2>
+                                    <div class="picture"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000972_maybeline_300.jpeg" alt="Picture for manufacturer Maybeline" title="Show products manufactured by Maybeline" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="7" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide27">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/asus" title="Show products manufactured by Asus" tabindex="-1"> Asus </a></h2>
+                                    <div class="picture"><a href="/asus" title="Show products manufactured by Asus" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000973_asus_300.jpeg" alt="Picture for manufacturer Asus" title="Show products manufactured by Asus" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="8" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide28">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/globe" title="Show products manufactured by Globe" tabindex="-1"> Globe </a></h2>
+                                    <div class="picture"><a href="/globe" title="Show products manufactured by Globe" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000980_globe_300.jpeg" alt="Picture for manufacturer Globe" title="Show products manufactured by Globe" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide" style="width: 172px;" data-slick-index="9" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide29">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/arai" title="Show products manufactured by Arai" tabindex="-1"> Arai </a></h2>
+                                    <div class="picture"><a href="/arai" title="Show products manufactured by Arai" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000975_arai_300.jpeg" alt="Picture for manufacturer Arai" title="Show products manufactured by Arai" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-current slick-active" style="width: 172px;" data-slick-index="10" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide210">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/giro" title="Show products manufactured by Giro" tabindex="0"> Giro </a></h2>
+                                    <div class="picture"><a href="/giro" title="Show products manufactured by Giro" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000976_giro_300.jpeg" alt="Picture for manufacturer Giro" title="Show products manufactured by Giro" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-active" style="width: 172px;" data-slick-index="11" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide211">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/thule" title="Show products manufactured by Thule" tabindex="0"> Thule </a></h2>
+                                    <div class="picture"><a href="/thule" title="Show products manufactured by Thule" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000977_thule_300.jpeg" alt="Picture for manufacturer Thule" title="Show products manufactured by Thule" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned slick-active" style="width: 172px;" data-slick-index="12" aria-hidden="false" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/samsung" title="Show products manufactured by Samsung" tabindex="0"> Samsung </a></h2>
+                                    <div class="picture"><a href="/samsung" title="Show products manufactured by Samsung" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000967_samsung_300.jpeg" alt="Picture for manufacturer Samsung" title="Show products manufactured by Samsung" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned slick-active" style="width: 172px;" data-slick-index="13" aria-hidden="false" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/apple" title="Show products manufactured by Apple" tabindex="0"> Apple </a></h2>
+                                    <div class="picture"><a href="/apple" title="Show products manufactured by Apple" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000979_apple_300.jpeg" alt="Picture for manufacturer Apple" title="Show products manufactured by Apple" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned slick-active" style="width: 172px;" data-slick-index="14" aria-hidden="false" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/nikon" title="Show products manufactured by Nikon" tabindex="0"> Nikon </a></h2>
+                                    <div class="picture"><a href="/nikon" title="Show products manufactured by Nikon" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000978_nikon_300.jpeg" alt="Picture for manufacturer Nikon" title="Show products manufactured by Nikon" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned slick-active" style="width: 172px;" data-slick-index="15" aria-hidden="false" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/delonghi" title="Show products manufactured by Delonghi" tabindex="0"> Delonghi </a></h2>
+                                    <div class="picture"><a href="/delonghi" title="Show products manufactured by Delonghi" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000969_delonghi_300.jpeg" alt="Picture for manufacturer Delonghi" title="Show products manufactured by Delonghi" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned slick-active" style="width: 172px;" data-slick-index="16" aria-hidden="false" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/santa-cruz" title="Show products manufactured by Santa Cruz" tabindex="0"> Santa Cruz </a></h2>
+                                    <div class="picture"><a href="/santa-cruz" title="Show products manufactured by Santa Cruz" tabindex="0"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000970_santa-cruz_300.jpeg" alt="Picture for manufacturer Santa Cruz" title="Show products manufactured by Santa Cruz" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="17" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> Philips </a></h2>
+                                    <div class="picture"><a href="/philips" title="Show products manufactured by Philips" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000971_philips_300.jpeg" alt="Picture for manufacturer Philips" title="Show products manufactured by Philips" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item slick-slide slick-cloned" style="width: 172px;" data-slick-index="18" aria-hidden="true" tabindex="-1">
+                            <div class="item-box">
+                                <div class="manufacturer-item">
+                                    <h2 class="title"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> Maybeline </a></h2>
+                                    <div class="picture"><a href="/maybeline" title="Show products manufactured by Maybeline" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000972_maybeline_300.jpeg" alt="Picture for manufacturer Maybeline" title="Show products manufactured by Maybeline" style="opacity: 1;"> </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("Footer")
+</div>
+@await Component.InvokeAsync("EuCookieLaw")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

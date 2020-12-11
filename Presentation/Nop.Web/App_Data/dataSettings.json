@@ -1,0 +1,5 @@
+﻿{
+  "DataConnectionString": "Data Source=KKM-PC\\SQL2016;Initial Catalog=nopCommerce;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=015427",
+  "DataProvider": "sqlserver",
+  "RawDataSettings": {}
+}

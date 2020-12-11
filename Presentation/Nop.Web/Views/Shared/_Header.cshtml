@@ -1,0 +1,147 @@
+﻿@*<div class="header">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+        <div class="header-upper">
+            <div class="header-selectors-wrapper">
+                @await Component.InvokeAsync("TaxTypeSelector")
+                @await Component.InvokeAsync("CurrencySelector")
+                @await Component.InvokeAsync("LanguageSelector")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+            </div>
+            <div class="header-links-wrapper">
+                @await Component.InvokeAsync("HeaderLinks")
+                @await Component.InvokeAsync("FlyoutShoppingCart")
+            </div>
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMiddle })
+        <div class="header-lower">
+            <div class="header-logo">
+                @await Component.InvokeAsync("Logo")
+            </div>
+            <div class="search-box store-search-box">
+                @await Component.InvokeAsync("SearchBox")
+            </div>
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
+    </div>*@
+
+@*KKM  Modified*@
+@{
+    //current category ID
+    var currentCategoryId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.ActionContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    var currentManufacturerId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.ActionContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    var currentProductId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("productdetails", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.ActionContext.RouteData.Values["productId"].ToString());
+    }
+}
+<div class="header">
+ 
+    <div class="header-middle">
+        <div class="center">
+            <div class="header-logo">
+                @*<a href="/" class="logo"> <img alt="Nop Pavilion Responsive Theme" src="https://pavilion.nop-templates.com/images/thumbs/0000490.png"></a>*@
+
+                <a href="/" class="logo"> <img alt="Nop Pavilion Responsive Theme" src="images/thumbs/logo.png" style="background:white !important;"></a>
+            </div>
+            <div class="header-menu-parent">
+                <div class="header-menu categories-in-side-panel">
+                    <div class="close-menu"><span>Close</span></div>
+                    <ul class="mega-menu" data-isrtlenabled="false" data-enableclickfordropdown="false">
+                        <li><a href="/" title="Home"><span> Home</span></a></li>
+                        <li class="has-sublist"><a class="with-subcategories" href="/manufacturer/all" title="Manufacturers"><span>Manufacturers</span></a><div class="sublist-wrap manufacturers fullWidth"><div class="sublist"><div class="inner-wrap"><div class="row"><div class="box"><div class="title"><a class="manufacturer" href="/samsung" title="Samsung"><span>Samsung</span></a></div><div class="picture"><a class="manufacturer" href="/samsung" title="Samsung"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000967_samsung_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000967_samsung_165.jpeg" alt="Picture for category Samsung" title="Picture for category Samsung"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/apple" title="Apple"><span>Apple</span></a></div><div class="picture"><a class="manufacturer" href="/apple" title="Apple"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000979_apple_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000979_apple_165.jpeg" alt="Picture for category Apple" title="Picture for category Apple"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/nikon" title="Nikon"><span>Nikon</span></a></div><div class="picture"><a class="manufacturer" href="/nikon" title="Nikon"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000978_nikon_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000978_nikon_165.jpeg" alt="Picture for category Nikon" title="Picture for category Nikon"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/delonghi" title="Delonghi"><span>Delonghi</span></a></div><div class="picture"><a class="manufacturer" href="/delonghi" title="Delonghi"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000969_delonghi_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000969_delonghi_165.jpeg" alt="Picture for category Delonghi" title="Picture for category Delonghi"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/santa-cruz" title="Santa Cruz"><span>Santa Cruz</span></a></div><div class="picture"><a class="manufacturer" href="/santa-cruz" title="Santa Cruz"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000970_santa-cruz_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000970_santa-cruz_165.jpeg" alt="Picture for category Santa Cruz" title="Picture for category Santa Cruz"> </a></div></div></div><div class="row"><div class="box"><div class="title"><a class="manufacturer" href="/philips" title="Philips"><span>Philips</span></a></div><div class="picture"><a class="manufacturer" href="/philips" title="Philips"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000971_philips_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000971_philips_165.jpeg" alt="Picture for category Philips" title="Picture for category Philips"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/maybeline" title="Maybeline"><span>Maybeline</span></a></div><div class="picture"><a class="manufacturer" href="/maybeline" title="Maybeline"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000972_maybeline_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000972_maybeline_165.jpeg" alt="Picture for category Maybeline" title="Picture for category Maybeline"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/asus" title="Asus"><span>Asus</span></a></div><div class="picture"><a class="manufacturer" href="/asus" title="Asus"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000973_asus_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000973_asus_165.jpeg" alt="Picture for category Asus" title="Picture for category Asus"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/globe" title="Globe"><span>Globe</span></a></div><div class="picture"><a class="manufacturer" href="/globe" title="Globe"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000980_globe_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000980_globe_165.jpeg" alt="Picture for category Globe" title="Picture for category Globe"> </a></div></div><div class="box"><div class="title"><a class="manufacturer" href="/arai" title="Arai"><span>Arai</span></a></div><div class="picture"><a class="manufacturer" href="/arai" title="Arai"> <img class="lazy" src="https://pavilion.nop-templates.com/images/thumbs/0000975_arai_165.jpeg" data-original="https://pavilion.nop-templates.com/images/thumbs/0000975_arai_165.jpeg" alt="Picture for category Arai" title="Picture for category Arai"> </a></div></div></div></div></div></div></li>
+                        <li><a href="/contactus" title="Contact us"><span> Contact us</span></a></li>
+                        <li><a href="/blog" title="Blog"><span> Blog</span></a></li>
+                        <li><a href="/contactus-2"><span> </span></a></li>
+                    </ul>
+                    <div class="menu-title"><span>Menu</span></div>
+                    <ul class="mega-menu-responsive">
+                        <li><a href="/" title="Home"><span> Home</span></a></li>
+                        <li class="has-sublist">
+                            <a class="with-subcategories" href="/manufacturer/all" title="Manufacturers"><span>Manufacturers</span></a>
+                            <div class="plus-button"></div>
+                            <div class="sublist-wrap">
+                                <ul class="sublist">
+                                    <li class="back-button"><span>back</span></li>
+                                    <li><a href="/samsung" title="Samsung"><span>Samsung</span></a></li>
+                                    <li><a href="/apple" title="Apple"><span>Apple</span></a></li>
+                                    <li><a href="/nikon" title="Nikon"><span>Nikon</span></a></li>
+                                    <li><a href="/delonghi" title="Delonghi"><span>Delonghi</span></a></li>
+                                    <li><a href="/santa-cruz" title="Santa Cruz"><span>Santa Cruz</span></a></li>
+                                    <li><a href="/philips" title="Philips"><span>Philips</span></a></li>
+                                    <li><a href="/maybeline" title="Maybeline"><span>Maybeline</span></a></li>
+                                    <li><a href="/asus" title="Asus"><span>Asus</span></a></li>
+                                    <li><a href="/globe" title="Globe"><span>Globe</span></a></li>
+                                    <li><a href="/arai" title="Arai"><span>Arai</span></a></li>
+                                    <li><a class="view-all" href="/manufacturer/all" title="View all"> <span>View all</span> </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="/contactus" title="Contact us"><span> Contact us</span></a></li>
+                        <li><a href="/blog" title="Blog"><span> Blog</span></a></li>
+                        <li><a href="/contactus-2"><span> </span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-links-wrapper" style="margin-top:10px;">
+                <label>My Account</label>
+                @await Component.InvokeAsync("HeaderLinks")
+                <div class="header-links">
+                <ul>
+                    <li><a href="/register?returnUrl=%2F" class="ico-register">Register</a></li>
+                    <li><a href="/login?returnUrl=%2F" class="ico-login" data-loginurl="/login">Log in</a></li>
+                    <li><a href="/wishlist" class="ico-wishlist"> <span class="wishlist-label">Wishlist</span> <span class="wishlist-qty">(0)</span> </a></li>
+                </ul>
+            </div>
+            </div>
+            @await Component.InvokeAsync("FlyoutShoppingCart")
+            @*<div class="flyout-cart-wrapper" id="flyout-cart">
+            <a href="/cart" class="cart-trigger"> <span class="cart-qty">(0)</span> <span class="cart-label">items</span> </a>
+            <div class="flyout-cart" style="">
+                <div class="mini-shopping-cart">
+                    <div class="count">You have no items in your shopping cart.</div>
+                </div>
+            </div>
+        </div>*@
+        </div>
+    </div>
+    <div class="header-lower">
+        <div class="center">
+            <span class="category-navigation-title">All Categories</span>
+            <div class="search-box store-search-box">
+                <form method="get" id="small-search-box-form" action="/search">
+                    <span tabindex="-1" role="presentation" class="k-widget k-autocomplete search-box-text k-autocomplete-clearable k-state-default" style="">
+                        <input type="text" class="search-box-text k-input" id="small-searchterms" autocomplete="off" name="q" placeholder="Search store" aria-label="Search store" data-role="autocomplete" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="small-searchterms_listbox" aria-autocomplete="list"><span unselectable="on" class="k-icon k-clear-value k-i-close k-hidden" title="clear" role="button" tabindex="-1"></span><span class="k-icon k-i-loading" style="display:none"></span>
+                    </span>
+                    <input type="hidden" class="instantSearchResourceElement" data-highlightfirstfoundelement="true" data-minkeywordlength="3" data-defaultproductsortoption="0" data-instantsearchurl="/instantSearchFor" data-searchpageurl="/search" data-searchinproductdescriptions="true" data-numberofvisibleproducts="5" data-noresultsresourcetext=" No data found."> <input type="submit" class="button-1 search-box-button" value="Search"><div class="k-list-container k-popup k-group k-reset" id="small-searchterms-list" data-role="popup" aria-hidden="true" style="display: none; position: absolute;">
+                        <div class="k-group-header" style="display:none"></div>
+                        <div class="k-list-scroller" unselectable="on">
+                            <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" id="small-searchterms_listbox" aria-live="polite" data-role="staticlist" role="listbox">
+                            </ul>
+                        </div>
+                        <div class="k-nodata" style="display:none">
+                            <div></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

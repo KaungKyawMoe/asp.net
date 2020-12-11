@@ -1,0 +1,112 @@
+﻿@model FooterModel
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@inject IWorkContext workContext;
+    <div class="footer">
+        <div class="footer-upper">
+            <div class="center">
+                <div class="newsletter">
+                    <div class="title"><strong>Sign up for our newsletter</strong></div>
+                    <div class="newsletter-subscribe" id="newsletter-subscribe-block">
+                        <div class="newsletter-email"><input id="newsletter-email" class="newsletter-subscribe-text" placeholder="Enter your email here..." aria-label="Sign up for our newsletter" type="email" name="NewsletterEmail"> <input type="button" value="Subscribe" id="newsletter-subscribe-button" class="button-1 newsletter-subscribe-button"></div>
+                        <div class="newsletter-validation"><span id="subscribe-loading-progress" style="display:none" class="please-wait">Wait...</span> <span class="field-validation-valid" data-valmsg-for="NewsletterEmail" data-valmsg-replace="true"></span></div>
+                    </div>
+                    <div class="newsletter-result" id="newsletter-result-block"></div>
+                </div>
+                <ul class="social-sharing">
+                    <li class="twitter"><a target="_blank" href="https://twitter.com/search?src=typd&amp;q=nop-templates" aria-label="Twitter"></a></li>
+                    <li class="facebook"><a target="_blank" href="https://www.facebook.com/NopTemplates/" aria-label="Facebook"></a></li>
+                    <li class="instagram"><a target="_blank" href="https://www.instagram.com/noptemplatesdemos/" aria-label="Instagram"></a></li>
+                    <li class="pinterest"><a target="_blank" href="https://www.pinterest.com/noptemplates/?eq=nop-te&amp;etslf=1886" aria-label="Pinterest"></a></li>
+                    <li class="youtube"><a target="_blank" href="https://www.youtube.com/user/SevenSpikesInc" aria-label="YouTube"></a></li>
+                    <li class="rss"><a href="/news/rss/1" aria-label="RSS"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-middle">
+            <div class="center">
+                <div class="footer-block">
+                    <div class="title"><strong>Information</strong></div>
+                    <ul class="list">
+                        <li><a href="/about-us">About us</a></li>
+                        <li><a href="/shipping-returns">Shipping &amp; returns</a></li>
+                        <li><a href="/privacy-notice">Privacy notice</a></li>
+                        <li><a href="/conditions-of-use">Conditions of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <div class="title"><strong>Customer service</strong></div>
+                    <ul class="list">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/payment-info">Payment Info</a></li>
+                        <li><a href="/guarantee">Guarantee</a></li>
+                        <li><a href="/terms-of-use">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <div class="title"><strong>My account</strong></div>
+                    <ul class="list">
+                        <li><a href="/customer/info">My account</a></li>
+                        <li><a href="/customer/addresses">Addresses</a></li>
+                        <li><a href="/order/history">Orders</a></li>
+                        <li><a href="/cart">Shopping cart</a></li>
+                        <li><a href="/wishlist">Wishlist</a></li>
+                        <li><a href="/compareproducts">Compare products list</a></li>
+                        <li><a href="/vendor/apply">Apply for vendor account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block quick-contact">
+                    <div class="title"><strong>Contact Us</strong></div>
+                    <ul class="list">
+                        <li class="address"><span>No.(29-B), First Floor, New University Avenue Road, Bahan Township, Yangon.</span></li>
+                        <li class="email"><span>galaxymarketing.ygn@gmail.com</span></li>
+                        <li class="phone"><span>09 43209550 ,09 43064181, 09 420909100</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-lower">
+            <div class="center">
+                <ul class="accepted-payments">
+                    <li class="method5"><img style="height:27px;" src="images/thumbs/logo-mpu-new.png"></li>
+                    <li class="method2"></li>
+                    <li class="method4"></li>
+                    <li class="method6"></li>
+                </ul>
+                <div class="footer-disclaimer">Copyright © 2020 Galaxy Software. All rights reserved.</div>
+               @* <div class="footer-powered-by">Powered by <a href="https://www.nopcommerce.com/">nopCommerce</a></div>*@
+                @*<div class="footer-designed-by">Designed by <a href="https://www.nop-templates.com/" title="nopCommerce themes and plugins by Nop-Templates" target="_blank">Nop-Templates.com</a></div>*@
+                <div class="footer-store-theme"></div>
+            </div>
+        </div>
+    </div>
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.footer-block .title').on('click', function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 769) {
+                $(this).siblings('.list').slideToggle('slow');
+            }
+        });
+    });
+</script>
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.block .title').on('click', function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 1001) {
+                $(this).siblings('.listbox').slideToggle('slow');
+            }
+        });
+    });
+</script>

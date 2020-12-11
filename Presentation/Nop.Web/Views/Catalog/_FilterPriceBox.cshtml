@@ -1,0 +1,92 @@
+﻿@model CatalogPagingFilteringModel.PriceRangeFilterModel
+@{
+    var selectedItem = Model.Items.FirstOrDefault(x => x.Selected);
+}
+
+@functions{
+
+    public string FormatPriceRangeText(CatalogPagingFilteringModel.PriceRangeFilterItem filterItem)
+    {
+        var rangeText = "";
+        if (string.IsNullOrWhiteSpace(filterItem.From))
+        {
+            rangeText = string.Format(T("Filtering.PriceRangeFilter.Under").Text, $"<span class=\"PriceRange\">{filterItem.To}</span>");
+        }
+        else if (string.IsNullOrWhiteSpace(filterItem.To))
+        {
+            rangeText = string.Format(T("Filtering.PriceRangeFilter.Over").Text, $"<span class=\"PriceRange\">{filterItem.From}</span>");
+        }
+        else
+        {
+            rangeText = $"<span class=\"PriceRange\">{filterItem.From}</span> - <span class=\"PriceRange\">{filterItem.To}</span>";
+        }
+        return rangeText;
+    }
+}
+@*@if (Model.Enabled)
+{
+    <div class="product-filter price-range-filter">
+        <div class="filter-title">
+            <strong>@T("Filtering.PriceRangeFilter")</strong>
+        </div>
+        <div class="filter-content">
+            @if (selectedItem == null)
+            {
+                <div class="available-items">
+                    <ul class="group price-range-group">
+                        @foreach (var item in Model.Items)
+                        {
+                            <li><a href="@item.FilterUrl">@Html.Raw(FormatPriceRangeText(item))</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="filtered-items">
+                    <span class="item">@Html.Raw(FormatPriceRangeText(selectedItem))</span>
+                </div>
+                <div class="remove-filter">
+                    <a href="@Model.RemoveFilterUrl">@T("Filtering.PriceRangeFilter.Remove")</a>
+                </div>
+            }
+        </div>
+
+    </div>
+}*@
+
+@if (Model.Enabled)
+{
+    <div class="block filter-block priceRangeFilterPanel7Spikes" data-currentcurrencysymbol="$">
+        <div class="title"><a class="toggleControl">@T("Filtering.PriceRangeFilter")</a> <a class="clearPriceRangeFilter" style="display: none;">Clear</a></div>
+        <div class="filtersGroupPanel">
+            <div class="priceRangeMinMaxPanel">
+                <span class="priceRangeMinPanel">
+                    <span>Min:</span>
+                    <span class="priceRangeMinPrice">0</span>
+                </span>
+                <span class="priceRangeMaxPanel">
+                    <span>Max:</span> <span class="priceRangeMaxPrice">@Model.Items.Max(p => p.To)</span>
+                </span>
+            </div>
+            @*<div id="slider" class="price-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-sliderminvalue="@Model.Items.Min(p => p.From)" data-slidermaxvalue="@Model.Items.Max(p => p.To)" data-selectedfromvalue="@Model.Items.Min(p => p.From)" data-selectedtovalue="@Model.Items.Max(p => p.To)" data-customformatting="">
+            <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span>
+            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span>
+        </div>
+        <div class="priceRangeCurrentPricesPanel">
+            <span class="currentMinPrice">@Model.Items.FirstOrDefault().From</span>
+            <span class="currentMaxPrice">@Model.Items.FirstOrDefault().To</span>
+        </div>*@
+            <div id="slider" class="price-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-sliderminvalue="100" data-slidermaxvalue="50000" data-selectedfromvalue="100" data-selectedtovalue="50000" data-customformatting="">
+                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span>
+                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span>
+            </div>
+            <div class="priceRangeCurrentPricesPanel">
+                <span class="currentMinPrice">100</span>
+                <span class="currentMaxPrice">50000</span>
+            </div>
+        </div>
+    </div>
+}

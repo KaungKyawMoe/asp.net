@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "_Root";
+    Html.AppendScriptParts(ResourceLocation.Footer, $"https://pavilion.nop-templates.com/bundles/o3sos3hehzwl7lpp7tjw-jxjkmhti2xnupqenzyliri.min.js");
+    Html.AddCssFileParts("https://pavilion.nop-templates.com/bundles/snmevxlt4ghtqgermpycwludjh8xagjnyk2o0vq2glu.min.css");
+}
+@{
+    //current category ID
+    var currentCategoryId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.ActionContext.RouteData.Values["categoryId"].ToString());
+    }
+
+
+    //current manufacturer ID
+    var currentManufacturerId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("manufacturer", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentManufacturerId = Convert.ToInt32(Url.ActionContext.RouteData.Values["manufacturerId"].ToString());
+    }
+
+
+    //current product ID
+    var currentProductId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("productdetails", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.ActionContext.RouteData.Values["productId"].ToString());
+    }
+}
+@*<link href="https://pavilion.nop-templates.com/bundles/snmevxlt4ghtqgermpycwludjh8xagjnyk2o0vq2glu.min.css" rel="stylesheet"/>*@
+@if (IsSectionDefined("Breadcrumb"))
+{
+    @section Breadcrumb {
+        @RenderSection("Breadcrumb")
+    }
+}
+@*
+    <div class="side-2">
+        @if (IsSectionDefined("left"))
+        {
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })
+            @RenderSection("left")
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfter })
+        }
+        else
+        {
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })
+            @await Component.InvokeAsync("CategoryNavigation", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterCategoryNavigation })
+            @await Component.InvokeAsync("ManufacturerNavigation", new { currentManufacturerId = currentManufacturerId })
+            @await Component.InvokeAsync("VendorNavigation")
+            @await Component.InvokeAsync("RecentlyViewedProductsBlock", new { productThumbPictureSize = 64 })
+            @await Component.InvokeAsync("PopularProductTags")
+            @await Component.InvokeAsync("PollBlock", new { systemKeyword = "LeftColumnPoll" })
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfter })
+        }
+    </div>
+    <div class="center-2">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })
+        @RenderBody()
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnAfter })
+    </div>
+*@
+
+<div class="center-2">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })
+    @RenderBody()
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnAfter })
+</div>
+
+<div class="side-2">
+    @await Component.InvokeAsync("ManufactureFilter", new { currentCategoryId = currentCategoryId})
+    <input id="availableSortOptionsJson" name="availableSortOptionsJson" type="hidden" value="[{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:true,&quot;Text&quot;:&quot;Position&quot;,&quot;Value&quot;:&quot;0&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Name: A to Z&quot;,&quot;Value&quot;:&quot;5&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Name: Z to A&quot;,&quot;Value&quot;:&quot;6&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Price: Low to High&quot;,&quot;Value&quot;:&quot;10&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Price: High to Low&quot;,&quot;Value&quot;:&quot;11&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;Created on&quot;,&quot;Value&quot;:&quot;15&quot;}]"> <input id="availableViewModesJson" name="availableViewModesJson" type="hidden" value="[{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:true,&quot;Text&quot;:&quot;Grid&quot;,&quot;Value&quot;:&quot;grid&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;List&quot;,&quot;Value&quot;:&quot;list&quot;}]">
+    <input id="availablePageSizesJson" name="availablePageSizesJson" type="hidden" value="[{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;3&quot;,&quot;Value&quot;:&quot;3&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;6&quot;,&quot;Value&quot;:&quot;6&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:true,&quot;Text&quot;:&quot;9&quot;,&quot;Value&quot;:&quot;9&quot;},{&quot;Disabled&quot;:false,&quot;Group&quot;:null,&quot;Selected&quot;:false,&quot;Text&quot;:&quot;12&quot;,&quot;Value&quot;:&quot;12&quot;}]">
+    <div class="block block-category-navigation">
+        <div class="title subcategories-title"><strong>Subcategories</strong></div>
+        <div class="listbox category-page-navigation">
+            <ul class="list">
+                <li><a href="/shirts-2">Shirts (3) </a></li>
+                <li><a href="/coats-jackets">Coats &amp; Jackets (3) </a></li>
+                <li><a href="/trousers-jeans">Trousers &amp; Jeans (3) </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="block block-manufacturer-navigation">
+        <div class="title"><strong>Manufacturers</strong></div>
+        <div class="listbox">
+            <ul class="list">
+                <li class="inactive"><a href="/samsung">Samsung</a></li>
+                <li class="inactive"><a href="/apple">Apple</a></li>
+                <li class="inactive"><a href="/nikon">Nikon</a></li>
+                <li class="inactive"><a href="/delonghi">Delonghi</a></li>
+                <li class="inactive"><a href="/santa-cruz">Santa Cruz</a></li>
+            </ul>
+            <div class="view-all"><a href="/manufacturer/all">View all</a></div>
+        </div>
+    </div>
+    <div class="block block-vendor-navigation">
+        <div class="title"><strong>Vendors</strong></div>
+        <div class="listbox">
+            <ul class="list">
+                <li><a href="/vendor-1">Vendor 1</a></li>
+                <li><a href="/vendor-2">Vendor 2</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="block block-recently-viewed-products">
+        <div class="title"><strong>Recently viewed products</strong></div>
+        <div class="listbox">
+            <ul class="list">
+                <li>
+                    <a class="product-picture" href="/macbook-pro-retina" title="Show details for Macbook Pro Retina">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazyloadsrc="https://pavilion.nop-templates.com/images/thumbs/0000364_macbook-pro-retina_64.jpeg" alt="Picture of Macbook Pro Retina" title="Show details for Macbook Pro Retina">
+                    </a>
+                    <a class="product-name" href="/macbook-pro-retina">Macbook Pro Retina</a>
+                </li>
+                <li class="last">
+                    <a class="product-picture" href="/poppy-print-dress" title="Show details for Poppy print dress">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazyloadsrc="https://pavilion.nop-templates.com/images/thumbs/0000110_poppy-print-dress_64.jpeg" alt="Picture of Poppy print dress" title="Show details for Poppy print dress">
+                    </a>
+                    <a class="product-name" href="/poppy-print-dress">Poppy print dress</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

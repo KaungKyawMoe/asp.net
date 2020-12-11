@@ -1,0 +1,376 @@
+﻿@model ProductDetailsModel
+@using Nop.Core.Domain.Seo;
+@inject Nop.Core.IWebHelper webHelper 
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    Html.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    Html.AppendPageCssClassParts("html-product-details-page");
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, webHelper.CurrentRequestProtocol).ToLowerInvariant();
+        Html.AddCanonicalUrlParts(productUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:image:url\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+    }
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+    }
+}
+<!--product breadcrumb-->
+@section Breadcrumb
+{
+    @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
+}
+
+<div class="prev-next-wrapper">
+    <div class="previous-product">
+        <a href="/leather-skirt"><span class="previous-product-label">Prev</span><span class="previous-product-title">Leather skirt</span></a>
+    </div>
+    <div class="next-product">
+        <a href="/a-line-skirt"><span class="next-product-label">Next</span><span class="next-product-title">A-line skirt</span></a>
+    </div>
+</div>
+<div class="page product-details-page">
+    <div class="page-body">
+        <form method="post" id="product-details-form" action="/denim-blue-short" novalidate="novalidate">
+            <div itemscope="" itemtype="http://schema.org/Product">
+                <meta itemprop="name" content="Denim blue short"><meta itemprop="sku"><meta itemprop="gtin">
+                <meta itemprop="mpn">
+                <meta itemprop="description" content="Lorem ipsum suspendisse et ante vitae curabitur nisl curabitur ultrices et torquent magna, etiam justo morbi dui feugiat tortor nisi lorem sodales turpis augue, metus per diam faucibus nullam commodo quis tellus convallis mauris eget risus nostra euismod tempor.">
+                <meta itemprop="image" content="https://pavilion.nop-templates.com/images/thumbs/0000144_denim-blue-short_550.jpeg">
+                <div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+                    <meta itemprop="ratingValue" content="5.0"><meta itemprop="reviewCount" content="1">
+                </div>
+                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                    <meta itemprop="url" content="https://pavilion.nop-templates.com/denim-blue-short"><meta itemprop="price" content="79.00">
+                    <meta itemprop="priceCurrency" content="USD"><meta itemprop="priceValidUntil"><meta itemprop="availability" content="http://schema.org/InStock">
+                </div>
+                <div itemprop="review" itemscope="" itemtype="http://schema.org/Review"><meta itemprop="author" content="ALL"><meta itemprop="url" content="/productreviews/11"></div>
+            </div>
+            <div data-productid="@Model.Id">
+
+                <div class="product-essential">
+                    <input type="hidden" class="cloudZoomPictureThumbnailsInCarouselData" data-vertical="false" data-numvisible="5" data-numscrollable="5" data-enable-slider-arrows="true" data-enable-slider-dots="false" data-size="3" data-rtl="false" data-responsive-breakpoints-for-thumbnails="[{&quot;breakpoint&quot;:1001,&quot;settings&quot;:{&quot;slidesToShow&quot;:3, &quot;slidesToScroll&quot;:3,&quot;arrows&quot;:true,&quot;dots&quot;:false}},{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesToScroll&quot;:4,&quot;arrows&quot;:false,&quot;dots&quot;:true}},{&quot;breakpoint&quot;:400,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesToScroll&quot;:3,&quot;arrows&quot;:false,&quot;dots&quot;:true}}]" data-magnificpopup-counter="%curr% of %total%" data-magnificpopup-prev="Previous (Left arrow key)" data-magnificpopup-next="Next (Right arrow key)" data-magnificpopup-close="Close (Esc)" data-magnificpopup-loading="Loading..."> <input type="hidden" class="cloudZoomAdjustPictureOnProductAttributeValueChange" data-productid="11" data-isintegratedbywidget="true">
+                    <input type="hidden" class="cloudZoomEnableClickToZoom">
+
+                    <!--product pictures-->
+                    @await Html.PartialAsync("_ProductDetailsPictures", Model)
+
+                    <div class="overview">
+                        <div class="product-name"><h1>@Model.Name</h1></div>
+
+                        <!--product reviews-->
+                        @await Html.PartialAsync("_ProductReviewOverview", Model.ProductReviewOverview)
+
+                        @*<div class="prices">
+                            <div class="product-price"><span id="price-value-11" class="price-value-11">@Model.ProductPrice</span></div>
+                        </div>*@
+
+                        <!--price & add to cart & estimate shipping-->
+                        @{
+                            var dataDictPrice = new ViewDataDictionary(ViewData);
+                            dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
+                            @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
+
+
+                            @await Html.PartialAsync("_ProductTierPrices", Model.TierPrices)
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                                @Html.Raw(Model.ShortDescription)
+                            </div>
+                        }
+
+                        <div class="additional-details"></div>
+
+                        <!--attributes-->
+                        @{
+                            var dataDictAttributes = new ViewDataDictionary(ViewData);
+                            dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
+                            @await Html.PartialAsync("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)
+                        }
+
+                        <div class="availability">
+                            <div class="stock"><span class="label">Availability:</span> <span class="value" id="stock-availability-value-11">In stock</span></div>
+                        </div>
+
+                        <!--price & add to cart & estimate shipping-->
+                        @{
+                            @await Html.PartialAsync("_ProductEstimateShipping", Model.ProductEstimateShipping)
+
+                            var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                            dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                            @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
+
+                        }
+
+                        <!--wishlist, compare, email a friend-->
+                        <div class="overview-buttons">
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsBefore, additionalData = Model })
+                            @{
+                                var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                                @await Html.PartialAsync("_AddToWishlist", Model.AddToCart, dataDictAddToWishlist)
+                            }
+                            @await Html.PartialAsync("_CompareProductsButton", Model)
+                            @await Html.PartialAsync("_ProductEmailAFriendButton", Model)
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsAfter, additionalData = Model })
+                        </div>
+
+                    </div>
+
+                    <div class="overview-bottom">
+                        <div class="product-social-buttons">
+                            <label>Share:</label>
+                            <ul class="social-sharing">
+                                <li class="twitter"><a href="javascript:openShareWindow(&quot;https://twitter.com/share?url=https://pavilion.nop-templates.com/denim-blue-short&quot;)"> <span class="flip"></span> <span class="flop"></span> </a></li>
+                                <li class="facebook"><a href="javascript:openShareWindow(&quot;https://www.facebook.com/sharer.php?u=https://pavilion.nop-templates.com/denim-blue-short&quot;)"> <span class="flip"></span> <span class="flop"></span> </a></li>
+                                <li class="pinterest"><a href="javascript:void function(){var n=document.createElement(&quot;script&quot;);n.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);n.setAttribute(&quot;charset&quot;,&quot;UTF-8&quot;);n.setAttribute(&quot;src&quot;,&quot;https://assets.pinterest.com/js/pinmarklet.js?r=&quot;+Math.random()*99999999);document.body.appendChild(n)}()"> <span class="flip"></span> <span class="flop"></span> </a></li>
+                            </ul>
+                        </div>
+                        <div class="delivery">
+                            <div class="delivery-date"><span class="label">Delivery date:</span> <span class="value">8-14 days</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="two-column-wrapper">
+                    <div id="quickTabs" class="productTabs ui-tabs ui-corner-all ui-widget ui-widget-content" data-ajaxenabled="false" data-productreviewsaddnewurl="/ProductTab/ProductReviewsTabAddNew/11" data-productcontactusurl="/ProductTab/ProductContactUsTabAddNew/11" data-couldnotloadtaberrormessage="Couldn't load this tab.">
+
+                        <div class="productTabs-header">
+                            <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+                                <li role="tab" tabindex="0" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="quickTab-description" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
+                                    <a href="#quickTab-description" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Overview</a>
+                                </li>
+                                <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="quickTab-specifications" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false">
+                                    <a href="#quickTab-specifications" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Specifications</a>
+                                </li>
+                                <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="quickTab-reviews" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false">
+                                    <a href="#quickTab-reviews" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-3">Reviews</a>
+                                </li>
+                                <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="quickTab-contact_us" aria-labelledby="ui-id-4" aria-selected="false" aria-expanded="false">
+                                    <a href="#quickTab-contact_us" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-4">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="productTabs-body">
+
+                            <div id="quickTab-description" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+
+                                @if (!string.IsNullOrEmpty(Model.FullDescription))
+                                {
+                                    <div class="full-description">
+                                        @Html.Raw(Model.FullDescription)
+                                    </div>
+                                }
+
+                            </div>
+
+                            <div id="quickTab-specifications" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+                                <div class="product-specs-box">
+                                    <div class="title"><strong>Products specifications</strong></div>
+                                    <div class="table-wrapper">
+                                        <table class="data-table">
+                                            <colgroup><col width="25%"><col></colgroup>
+                                            <tbody>
+                                                <tr class="odd"><td class="spec-name">Clothing Material</td><td class="spec-value">Jean</td></tr>
+                                                <tr class="even"><td class="spec-name">Free Return</td><td class="spec-value">Yes</td></tr>
+                                                <tr class="odd"><td class="spec-name">Two Year Guarantee</td><td class="spec-value">Yes</td></tr>
+                                                <tr class="even"><td class="spec-name">Find more at</td><td class="spec-value"><a href="http://nop-templates.com" target="_blank">http://nop-templates.com</a></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="quickTab-reviews" aria-labelledby="ui-id-3" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+                                <div id="updateTargetId" class="product-reviews-page">
+                                    <div class="product-review-list">
+                                        <div class="title"><strong>Existing reviews</strong></div>
+                                        <div class="product-review-item">
+                                            <div class="review-item-head">
+                                                <div class="review-title"><strong>This product is wonderful</strong></div>
+                                                <div class="product-review-box">
+                                                    <div class="rating">
+                                                        <div style="width:100%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-main">
+                                                    <div class="review-text">
+                                                        <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-info">
+                                                    <span class="user"> <label>From:</label> <span>John</span> </span> <span class="separator">|</span> <span class="date"> <label>Date:</label> <span>3/15/2016 5:43 PM</span> </span>
+                                                </div>
+                                                <div class="product-review-helpfulness" data-productreviewid="5" data-productreviewvoteurl="/setproductreviewhelpfulness">
+                                                    <span class="question">Was this review helpful?</span>
+                                                    <span class="vote-options">
+                                                        <span id="vote-yes-5" class="vote vote-yes">Yes</span>
+                                                        <span id="vote-no-5" class="vote vote-no">No</span>
+                                                    </span>
+                                                    <span class="vote-stats"> (<span id="helpfulness-vote-yes-5">1</span>/<span id="helpfulness-vote-no-5">0</span>) </span>
+                                                    <span id="helpfulness-vote-result-5" class="result"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="write-review" id="review-form">
+                                        <div class="title"><strong>Write your own review</strong></div>
+                                        <div class="message-error validation-summary-errors"><ul><li>Only registered users can write reviews</li></ul></div>
+                                        <div class="form-fields">
+                                            <div class="inputs">
+                                                <label for="AddProductReview_Title">Review title:</label>
+                                                <input class="review-title" type="text" id="AddProductReview_Title" name="AddProductReview.Title" disabled="">
+                                                <span class="required">*</span> <span class="field-validation-valid" data-valmsg-for="AddProductReview.Title" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div class="inputs">
+                                                <label for="AddProductReview_ReviewText">Review text:</label>
+                                                <textarea class="review-text" id="AddProductReview_ReviewText" name="AddProductReview.ReviewText" disabled=""></textarea>
+                                                <span class="required">*</span> <span class="field-validation-valid" data-valmsg-for="AddProductReview.ReviewText" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div class="review-rating">
+                                                <label for="AddProductReview_Rating">Rating:</label>
+                                                <ul>
+                                                    <li class="label first">Bad</li>
+                                                    <li class="rating-options">
+                                                        <input value="1" type="radio" id="addproductrating_1" aria-label="Bad" data-val="true" data-val-required="The Rating field is required." name="AddProductReview.Rating">
+                                                        <input value="2" type="radio" id="addproductrating_2" aria-label="Not good" name="AddProductReview.Rating">
+                                                        <input value="3" type="radio" id="addproductrating_3" aria-label="Not bad but also not excellent" name="AddProductReview.Rating">
+                                                        <input value="4" type="radio" id="addproductrating_4" aria-label="Good" name="AddProductReview.Rating">
+                                                        <input value="5" type="radio" id="addproductrating_5" aria-label="Excellent" checked="" name="AddProductReview.Rating">
+                                                    </li>
+                                                    <li class="label last">Excellent</li>
+                                                </ul>
+                                            </div>
+                                            <div class="captcha-box">
+                                                <div class="captcha-box">
+                                                    <script>var onloadCallbackcaptcha_1486770744 = function () { grecaptcha.render("captcha_1486770744", { sitekey: "6Lf0xygTAAAAACh5HK3GUGAZ3i4Ustld5TjNYTAv", theme: "light" }) }</script><div id="captcha_1486770744"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lf0xygTAAAAACh5HK3GUGAZ3i4Ustld5TjNYTAv&amp;co=aHR0cHM6Ly9wYXZpbGlvbi5ub3AtdGVtcGxhdGVzLmNvbTo0NDM.&amp;hl=en&amp;v=UFwvoDBMjc8LiYc1DKXiAomK&amp;theme=light&amp;size=normal&amp;cb=s3ke0x48fmz4" width="304" height="78" role="presentation" name="a-x8ob3ec8vpun" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                                                    <script async="" defer="" src="https://www.google.com/recaptcha/api.js?onload=onloadCallbackcaptcha_1486770744&amp;render=explicit&amp;hl=en"></script>
+                                                </div>
+                                            </div>
+                                        </div><div class="buttons"><input type="button" id="add-review" disabled="" name="add-review" class="button-1 write-product-review-button" value="Submit review"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="quickTab-contact_us" aria-labelledby="ui-id-4" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+                                <div id="contact-us-tab" class="write-review">
+                                    <div class="form-fields">
+                                        <div class="inputs">
+                                            <label for="FullName">Your name</label>
+                                            <input placeholder="Enter your name" class="contact_tab_fullname review-title" type="text" data-val="true" data-val-required="Enter your name" id="FullName" name="FullName">
+                                            <span class="required">*</span> <span class="field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="inputs">
+                                            <label for="Email">Your email</label>
+                                            <input placeholder="Enter your email address" class="contact_tab_email review-title" type="email" data-val="true" data-val-email="Wrong email" data-val-required="Enter email" id="Email" name="Email"> <span class="required">*</span>
+                                            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="inputs">
+                                            <label for="Enquiry">Enquiry</label>
+                                            <textarea placeholder="Enter your enquiry" class="contact_tab_enquiry review-text" data-val="true" data-val-required="Enter enquiry" id="Enquiry" name="Enquiry"></textarea> <span class="required">*</span>
+                                            <span class="field-validation-valid" data-valmsg-for="Enquiry" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <input type="button" id="send-contact-us-form" name="send-email" class="button-1 contact-us-button" value="Submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="jcarousel-3-161" class="jCarouselMainWrapper">
+                        <div class="nop-jcarousel product-grid">
+                            <h2 class="carousel-title has-navigation" style="display: block;"><button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" style="">Previous</button><span>Also Purchased</span><button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" style="">Next</button></h2>
+                            <div class="slick-carousel item-grid slick-initialized slick-slider" data-slick="{&quot;rtl&quot;:false,&quot;infinite&quot;:true,&quot;slidesToScroll&quot;:1,&quot;dots&quot;:false,&quot;speed&quot;:300,&quot;autoplay&quot;:true,&quot;autoplaySpeed&quot;:2000,&quot;arrows&quot;:true,&quot;appendArrows&quot;:&quot;#jcarousel-3-161 .carousel-title&quot;,&quot;cssEase&quot;:&quot;linear&quot;,&quot;respondTo&quot;:&quot;slider&quot;,&quot;edgeFriction&quot;:0.05,&quot;initialSlide&quot;:0,&quot;pauseOnHover&quot;:true,&quot;draggable&quot;:false,&quot;prevArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-prev\&quot; aria-label=\&quot;Previous\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Previous</button>&quot;,&quot;nextArrow&quot;:&quot;<button type=\&quot;button\&quot; data-role=\&quot;none\&quot; class=\&quot;slick-next\&quot; aria-label=\&quot;Next\&quot; tabindex=\&quot;0\&quot; role=\&quot;button\&quot;>Next</button>&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:10000,&quot;settings&quot;:{&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:890,&quot;settings&quot;:{&quot;slidesToShow&quot;:3}},{&quot;breakpoint&quot;:711,&quot;settings&quot;:{&quot;slidesToShow&quot;:2}},{&quot;breakpoint&quot;:425,&quot;settings&quot;:{&quot;slidesToShow&quot;:1}}],&quot;lazyLoad&quot;:&quot;ondemand&quot;}" data-numberofvisibleitems="3">
+                                <div aria-live="polite" class="slick-list">
+                                    <div class="slick-track" role="listbox" style="opacity: 1; width: 4296px; transform: translate3d(-1790px, 0px, 0px);">
+                                        <div class="carousel-item slick-slide slick-cloned" style="width: 358px;" data-slick-index="-1" aria-hidden="true" tabindex="-1">
+                                            <div class="item-box">
+                                                <div class="product-item sevenspikes-ajaxcart" data-productid="20">
+                                                    <div class="ribbon-wrapper">
+                                                        <div class="picture"><a href="/fringed-ankle-boots" title="Show details for Fringed ankle boots" tabindex="-1"> <img src="https://pavilion.nop-templates.com/images/thumbs/0000189_fringed-ankle-boots_415.jpeg" alt="Picture of Fringed ankle boots" title="Show details for Fringed ankle boots" style="opacity: 1;"> </a></div><a href="/fringed-ankle-boots" class="ribbon-position top-left" data-productribbonid="2" data-productid="20" tabindex="-1">
+                                                            <div class="product-ribbon sale" style="background: #f74258;padding: 5px 15px;top: 15px;">
+                                                                <label class="ribbon-text" style="font-size: 13px;font-weight: bold;color: #fff;">-6%</label>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="product-rating-box" title="2 review(s)"><div class="rating"><div style="width:70%"></div></div></div><div class="attribute-squares-wrapper"></div><h2 class="product-title"><a href="/fringed-ankle-boots" tabindex="-1">Fringed ankle boots</a></h2><div class="add-info">
+                                                            <div class="prices"><span class="price actual-price">$274.00</span> <span class="price old-price">$290.00</span></div><div class="description">Lorem ipsum suspendisse et ante vitae curabitur nisl curabitur ultrices et torquent magna, etiam justo morbi dui feugiat tortor nisi lorem sodales turpis augue, metus per diam faucibus nullam commodo quis tellus convallis mauris eget risus nostra euismod tempor.</div><div class="buttons-upper"><div class="quick-view-button"><a title="Quick View" tabindex="-1">Quick View</a></div><input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="return AjaxCart.addproducttocomparelist(&quot;/compareproducts/add/20&quot;),!1" tabindex="-1"> <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="return AjaxCart.addproducttocart_catalog(&quot;/addproducttocart/catalog/20/2/1&quot;),!1" tabindex="-1"></div><div class="buttons-lower">
+                                                                <div class="ajax-cart-button-wrapper" data-productid="20" data-isproductpage="false">
+                                                                    <input data-quantityproductid="20" type="text" class="productQuantityTextBox" value="1" tabindex="-1">
+                                                                    <button type="button" class="button-2 product-box-add-to-cart-button nopAjaxCartProductListAddToCartButton" data-productid="20" tabindex="-1"><span>Add to cart</span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-collateral" style="display: none;">
+                    <div class="full-description">
+                        @if (!string.IsNullOrEmpty(Model.FullDescription))
+                        {
+                            <div class="full-description">
+                                @Html.Raw(Model.FullDescription)
+                            </div>
+                        }
+                    </div>
+
+                    @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecifications)
+
+                </div>
+
+                @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })
+
+                @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+
+            </div>
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8L_2uczF5a5EszxfE2R8v9MmDPYSBQwxANc3p35_FQwpqptmrrqKPJYlkfTaCgEtyh0Fynd4UJ8jMG8mvW_Mvw0X7m6wq6o0OnDj2fJnVVXUMa49aQHEKHyEN_9IxJT86JtJ0qNDHcOt0fZuXPQRKb0">
+        </form>
+    </div>
+</div>

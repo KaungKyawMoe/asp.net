@@ -1,0 +1,18 @@
+﻿@model CategoryModel
+    <div class="page-title"><h1>@Model.Name</h1></div>
+    <div class="nopAjaxFilters7Spikes" data-categoryid=@Model.Id data-manufacturerid="0" data-vendorid="0" data-isonsearchpage="False" data-searchkeyword="" data-searchcategoryid="0" data-searchmanufacturerid="0" data-searchvendorid="0" data-searchpricefrom="" data-searchpriceto="" data-searchincludesubcategories="False" data-searchinproductdescriptions="False" data-searchadvancedsearch="False" @*data-getfilteredproductsurl="/getFilteredProducts"*@ 
+         data-productslistpanelselector=".product-list" data-productsgridpanelselector=".product-grid" data-pagerpanelselector=".pager" data-pagerpanelintegrationselector=".product-grid, .product-list" data-sortoptionsdropdownselector="#products-orderby" data-viewoptionsdropdownselector=".viewmode-icon, #products-viewmode" data-productspagesizedropdownselector="#products-pagesize" data-filtersuimode="usecheckboxes" data-defaultviewmode="grid" data-enableinfinitescroll="False" data-infinitescrollloadertext="Loading more products ..." data-scrolltoelement="False" data-scrolltoelementselector=".product-selectors" data-scrolltoelementadditionaloffset="0" data-showselectedfilterspanel="True" data-numberofreturnedproductsselector=".product-viewmode" data-selectedoptionstargetselector=".nopAjaxFilters7Spikes .filtersPanel:first" data-selectedoptionstargetaction="prependTo" data-isrtl="false" data-closefilterspanelafterfiltrationinmobile="true" data-no-products-window-title="NO RESULTS FOUND" data-no-products-window-message="There are no products for the filters that you selected. Please widen your search criteria.">
+        <div class="block filter-block selected-options" style="display:none"><div class="title"><a class="toggleControl">Selected Options</a></div><div class="filtersGroupPanel disabled"><ul class="selected-options-list"></ul></div></div>
+        <div class="filtersTitlePanel">
+            <p class="filtersTitle">Filter by:</p><a class="clearFilterOptionsAll" style="">Clear All</a>
+        </div>
+        <div class="close-filters"><span>close</span></div>
+        <div class="filtersPanel">
+            @*filtering*@
+            @if (Model.PagingFilteringContext.PriceRangeFilter.Enabled)
+            {
+                @await Html.PartialAsync("_FilterPriceBox", Model.PagingFilteringContext.PriceRangeFilter)
+            }
+            
+        </div> 
+    </div>
